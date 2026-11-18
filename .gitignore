@@ -1,0 +1,27 @@
+# Configuración local y credenciales
+ambiente-lab.json
+.oci/
+.aidp/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Evidencias y exportaciones de cada participante
+evidencias/
+notebooks-exportados/
+
+# Archivos generados por Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfvars
+*.tfvars.json
+crash.log
+
+# Archivos locales de Python y del sistema
+__pycache__/
+*.pyc
+.DS_Store

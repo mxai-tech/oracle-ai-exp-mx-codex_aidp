@@ -1,0 +1,10 @@
+{
+  "aidpBin": "<RUTA_ABSOLUTA_DEL_EJECUTABLE_AIDP>",
+  "configFile": "<RUTA_ABSOLUTA_DE_CONFIG_LAB_AIDP>",
+  "profile": "LAB_AIDP",
+  "auth": "api_key",
+  "region": "us-chicago-1",
+  "instanceId": "<OUTPUT_AIDP_INSTANCE_ID>",
+  "workspaceKey": "<WORKSPACE_KEY_REAL>",
+  "clusterKey": "<CLUSTER_KEY_COMPLETADO_TRAS_CREAR_SPARK>"
+}

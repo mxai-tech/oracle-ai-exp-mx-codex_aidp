@@ -1,0 +1,64 @@
+title: "Laboratorio Codex y AIDP — OCI Resource Manager"
+description: "Crea compartment, políticas, AIDP y workspace. Lakehouse opcional; Spark se configura después con Codex. Selecciona Terraform 1.5.x en la stack."
+schemaVersion: 1.1.0
+version: "20261103"
+locale: "es"
+variableGroups:
+  - title: "Configuración del laboratorio"
+    variables:
+      - region
+      - lab_name
+      - workspace_name
+      - enable_ai_features
+  - title: "Lakehouse opcional — consume créditos adicionales"
+    visible: "${enable_ai_features}"
+    variables:
+      - lakehouse_database_name
+      - lakehouse_admin_password
+  - title: "Configuración automática"
+    visible: false
+    variables:
+      - tenancy_ocid
+      - iam_wait_seconds
+variables:
+  tenancy_ocid:
+    type: string
+    required: true
+    title: "Tenancy actual"
+  region:
+    type: oci:identity:region:name
+    required: true
+    title: "Región de AIDP (Chicago)"
+    default: "us-chicago-1"
+    description: "Predeterminado: Chicago (us-chicago-1). La región debe estar suscrita y tener AIDP y cuota disponibles en la cuenta de prueba."
+  lab_name:
+    type: string
+    required: true
+    title: "Nombre del entorno temporal"
+    default: "lab-codex-aidp-rm"
+    pattern: "^[a-z][a-z0-9-]{2,39}$"
+  workspace_name:
+    type: string
+    required: true
+    title: "Workspace inicial"
+    default: "lab-validacao"
+  enable_ai_features:
+    type: boolean
+    required: true
+    title: "¿Crear Lakehouse y habilitar funciones de IA?"
+    description: "Crea Lakehouse con 2 ECPUs y 1 TB de almacenamiento. No se necesita para los tres notebooks Spark. Consume créditos adicionales."
+    default: false
+  lakehouse_database_name:
+    type: string
+    title: "Nombre de la base de datos Lakehouse"
+    default: "LABAIDP"
+  lakehouse_admin_password:
+    type: password
+    title: "Contraseña ADMIN de Lakehouse"
+    required: "${enable_ai_features}"
+    confirmation: true
+    sensitive: true
+    description: "Al menos 12 caracteres con mayúsculas, minúsculas y números. No introduzcas la contraseña de la cuenta OCI."
+  iam_wait_seconds:
+    type: number
+    default: 90

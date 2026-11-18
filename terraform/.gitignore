@@ -1,0 +1,7 @@
+# Archivos generados y configuración local
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfvars
+*.pem
